@@ -1,0 +1,3 @@
+#!/bin/sh
+
+/usr/bin/invoke_app "$@" -C "start_jupyter -A -T @tool tumor3D_ML_app.ipynb" -t pc4tumor3dml -u anaconda-6
