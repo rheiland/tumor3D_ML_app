@@ -79,8 +79,8 @@ class SubstrateTab(object):
 
         # Paul's additions in Nov 2020
         self.bgcolor = [1,1,1]
-        self.dark_mode = True; 
-        self.enable_alpha = True; 
+        self.dark_mode = False; 
+        self.enable_alpha = False; 
         self.default_alpha = 0.4
 
         # initial value
@@ -292,7 +292,7 @@ class SubstrateTab(object):
 
         self.cell_alpha_toggle = Checkbox(
             description='transparency',
-            disabled=False,
+            disabled=True,
             value=self.enable_alpha, 
         )
         def cell_alpha_toggle_cb(b):
@@ -350,8 +350,8 @@ class SubstrateTab(object):
         #---------------------
         self.substrates_toggle = Checkbox(
             description='Substrates',
-            disabled=False,
-            value=True,
+            disabled=True,
+            value=False,
 #           layout=Layout(width=constWidth2),
         )
         def substrates_toggle_cb(b):
@@ -846,6 +846,8 @@ class SubstrateTab(object):
                         rgba = [1,1,1,self.default_alpha]
                     rgba[0:3] = list(map(int, s[4:-1].split(",")))  
                     rgba[0:3] = [x / 255. for x in rgba[0:3] ]
+                    if rgba[0] > 1.0:
+                        continue
                 else:     # otherwise, must be a color name
                     rgb_tuple = mplc.to_rgb(mplc.cnames[s])  # a tuple
                     rgba = [1,1,1,1.0]
