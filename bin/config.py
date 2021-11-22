@@ -39,6 +39,7 @@ class ConfigTab(object):
         label_domain = Label('Domain (micron):')
         stepsize = 10
         disable_domain = False
+        disable_domain = True
         self.xmin = FloatText(step=stepsize,
             # description='$X_{min}$',
             description='Xmin',
@@ -282,9 +283,11 @@ class ConfigTab(object):
 #        domain_box = VBox([label_domain,x_row,y_row,z_row], layout=box_layout)
         uep = xml_root.find(".//options//virtual_wall_at_domain_edge")
         if uep:
-            domain_box = VBox([label_domain,x_row,y_row, self.toggle_virtual_walls], layout=box_layout)
+            # domain_box = VBox([label_domain,x_row,y_row, self.toggle_virtual_walls], layout=box_layout)
+            domain_box = VBox([label_domain,x_row,y_row,z_row, self.toggle_virtual_walls], layout=box_layout)
         else:
-            domain_box = VBox([label_domain,x_row,y_row], layout=box_layout)
+            # domain_box = VBox([label_domain,x_row,y_row], layout=box_layout)
+            domain_box = VBox([label_domain,x_row,y_row,z_row], layout=box_layout)
 
         uep = xml_root.find(".//options//virtual_wall_at_domain_edge")
         if uep:
